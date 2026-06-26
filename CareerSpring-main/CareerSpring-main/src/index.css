@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600&family=Ma+Shan+Zheng&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-handwriting: "Ma Shan Zheng", cursive;
+  
+  --color-brand-bg: #F0F6FA;
+  --color-brand-primary: #3B82C4;
+  --color-brand-secondary: #6B8BA4;
+  --color-brand-muted: #94ACC0;
+  --color-brand-border: #D4E2EE;
+  --color-brand-surface: #F7FAFC;
+  --color-brand-active: #CDDFF0;
+  --color-brand-hover: #E8F0F8;
+  --color-brand-divider: #E4EDF5;
+  --color-brand-ink: #1E3448;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-brand-bg);
+  color: var(--color-brand-ink);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark body,
+.dark {
+  --color-brand-bg: #0a1628;
+  --color-brand-primary: #5BA0E0;
+  --color-brand-secondary: #8aa4bc;
+  --color-brand-muted: #5a7a96;
+  --color-brand-border: #1e3448;
+  --color-brand-surface: #0f1c2e;
+  --color-brand-active: #162a40;
+  --color-brand-hover: #12243a;
+  --color-brand-divider: #1a2d42;
+  --color-brand-ink: #e0eaf4;
+}
+
+.serif {
+  font-family: var(--font-serif);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-border);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-primary);
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white rounded-[32px] border border-brand-divider transition-all duration-300;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+  
+  .dark .glass-card {
+    @apply bg-[#0f1c2e] border-[#1e3448];
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-primary {
+    @apply bg-brand-primary text-white px-6 py-2.5 rounded-2xl font-medium transition-all hover:opacity-90 active:scale-95;
+  }
+  
+  .custom-shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+  
+  .custom-shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .dark .custom-shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .sidebar-btn {
+    @apply flex items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-300 text-brand-secondary hover:bg-brand-hover;
+  }
+  
+  .sidebar-btn-active {
+    @apply flex items-center gap-3 px-4 py-3 rounded-2xl bg-brand-active text-brand-primary font-medium transition-all;
+  }
+}
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+  @apply font-bold mt-4 mb-2 first:mt-0;
+}
+.markdown-body p {
+  @apply mb-3 last:mb-0;
+}
+.markdown-body ul, .markdown-body ol {
+  @apply pl-5 mb-4 list-outside;
+}
+.markdown-body ul {
+  @apply list-disc;
+}
+.markdown-body ol {
+  @apply list-decimal;
+}
+.markdown-body li {
+  @apply mb-1;
+}
+.markdown-body strong {
+  @apply font-bold text-white;
+}
+.markdown-body hr {
+  @apply opacity-20 my-4;
+}
+
+@media (max-width: 768px) {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

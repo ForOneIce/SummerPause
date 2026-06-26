@@ -1,0 +1,27 @@
+import type { PodcastEpisode } from '../types';
+
+export const PODCAST_EPISODES: PodcastEpisode[] = [
+  { url: 'https://www.xiaoyuzhoufm.com/episode/68d518fbb4befcf730e53c6a', title: 'EP45 Gap、裸辞与成长：开心到底是不是浪费时间？', show: '纵横四海｜番外', category: 'gap' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/6899900420a2906a4df24596', title: 'VoL.29 在"紧绷"的世界里，找回我们的"松弛"！', show: '哇噻女孩', category: 'gap' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/660907871519139e4fa900f8', title: '裸辞是什么新潮流吗？这辈子就想做一个贪得无厌的人！', show: '得偿所愿 AsYouWish', category: 'gap' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/67f61834ff6ff2a4098bfd63', title: '30岁+：成长不容易，但很值得', show: '长点脑子', category: 'gap' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/66e856cd3a5ff0a0cade9232', title: 'Vol4.没关系，你也可以停下来', show: '下班再议', category: 'gap' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/666335f363c334a2fb1bff92', title: '在Gap中自愈，没有成为一个"有用"的大人也没有关系', show: 'Gap女孩', category: 'gap' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/69380a4a3fec3166cf1d9eea', title: 'gap期的AB面：对外享受自由，对内安放焦虑', show: 'sweets女性成长', category: 'gap' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/651ffd0bba2ed85c6dcf55fd', title: 'Vol.39｜只要心里还有劲儿，那躺平就是Gap time', show: '长安咖啡时间', category: 'gap' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/61ff90520c35c9f95dca179c', title: 'Vol.2 把闲暇作为正事: 在澳洲、菲律宾、国内的间隔年', show: '树屋喝茶Free talk', category: 'gap' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/63511e1fe67030aadb38fae4', title: '逃离北京，我去厦门做义工', show: '消声bibi机', category: 'gap' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/652db6ec49f5d02b0d5375a1', title: '创作者01｜Modern Woman大陶：放下焦虑，因为我们只能成为我们自己', show: 'jennifer无穷动', category: 'anxiety' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/61e39c5e3422111006254441', title: '毕业和间隔年的焦虑迷茫并不可怕，你我都可能经历', show: '时光小偷MoonAway', category: 'anxiety' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/653e311bef5bf8b6c56f1e25', title: 'vol.18 在赚钱焦虑的时代，每个人都需要一个呼吸教练。', show: '一人公司', category: 'anxiety' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/681e1801801df08d38715fb1', title: '纯纯：小镇女孩如何在动荡的世界中，找到自己的栖息之所', show: '邱后算账Hindsights', category: 'anxiety' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/691aa56d6018cc2c982f5206', title: '66周一妍：愿我们成为彼此清爽的风', show: '100个日日滋养的人', category: 'anxiety' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/6884805da12f9ff06a1bccfb', title: 'vol.50 燥热夏日里一些持续获取能量的疗愈时光', show: '快活似神仙', category: 'anxiety' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/67072af86c7f817786ef0a8a', title: '013.和「焦虑」和平共处', show: 'TalkToYouLater 蒯仔', category: 'anxiety' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/668dc3da8fcadceb9032b6cd', title: 'N026.自我成长，是疗愈能力的最佳养料', show: '生活探险家', category: 'anxiety' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/683865d231215eb5066682b0', title: 'Vol 48. 比起情绪稳定，我更想情绪自由！', show: '俗话说CHIT-CHAT', category: 'anxiety' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/64ee02cdc877a76d3317923d', title: '浅睡1|我在某一天找到了快乐！', show: '白日梦研究', category: 'anxiety' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/65df441b6144a933b1c48600', title: '自我肯定关爱冥想', show: '美佳瑜伽疗愈空间', category: 'anxiety' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/6299eacf525536dd029361fc', title: '【MineSoul日常】工作间隙 | 片刻的放松', show: '莫守MineSoul正念冥想', category: 'anxiety' },
+  { url: 'https://www.xiaoyuzhoufm.com/episode/623af7221f48506a4b01712c', title: '【情绪旅行】与焦虑和解，它其实没有那么坏', show: '焦虑拯救办 I 冥想空间', category: 'anxiety' },
+];

@@ -29,6 +29,7 @@ import { format } from 'date-fns';
 
 import type { Page, AssetRecord, ResumeVersion, JobApplication } from './types';
 import { NavItem } from './components/NavItem';
+import { ThemeToggle } from './components/ThemeToggle';
 import Dashboard from './pages/Dashboard';
 import KnowSelf from './pages/KnowSelf';
 import KnowOthers from './pages/KnowOthers';
@@ -468,6 +469,8 @@ export default function App() {
           </main>
         </div>
       </div>
+
+      <ThemeToggle />
 
       {/* Ko-fi Floating Widget */}
       <a

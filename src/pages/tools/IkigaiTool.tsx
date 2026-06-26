@@ -5,6 +5,7 @@ import { generateIkigaiSynthesis } from '../../lib/gemini';
 import { format } from 'date-fns';
 import html2canvas from 'html2canvas';
 import { IkigaiInput } from '../../components/IkigaiInput';
+import { MarkdownRenderer } from '../../components/MarkdownRenderer';
 
 export default function IkigaiTool({ onBack }: { onBack: () => void }) {
   const [love, setLove] = useState('');
@@ -138,9 +139,7 @@ export default function IkigaiTool({ onBack }: { onBack: () => void }) {
                     <Sparkles size={20} />
                     <h4 className="font-bold">Ikigai 合成报告</h4>
                   </div>
-                  <div className="max-w-none serif italic leading-relaxed text-[#1E3448CC] dark:text-[#8aa4bc] whitespace-pre-wrap text-sm">
-                    {synthesis}
-                  </div>
+                  <MarkdownRenderer content={synthesis} />
                 </motion.div>
               )}
             </AnimatePresence>

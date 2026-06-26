@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react';
-import ReactMarkdown from 'react-markdown';
 import {
   BarChart3, Briefcase, TrendingUp, MessageSquareHeart,
   ShieldCheck, Cpu, Sparkles, Search, Loader2, ChevronRight, Download
 } from 'lucide-react';
+import { MarkdownRenderer } from '../components/MarkdownRenderer';
 import { motion, AnimatePresence } from 'motion/react';
 import { analyzeIndustry } from '../lib/gemini';
 import { format } from 'date-fns';
@@ -206,14 +206,9 @@ export default function KnowOthers() {
               </div>
               <div
                 ref={resultRef}
-                className="p-8 bg-brand-surface rounded-3xl border border-brand-divider dark:border-[#1e3448] prose prose-sm max-w-none
-                  prose-headings:text-brand-ink prose-headings:font-serif prose-headings:italic
-                  prose-p:text-brand-secondary prose-p:leading-relaxed
-                  prose-strong:text-brand-ink
-                  prose-li:text-brand-secondary
-                  dark:prose-headings:text-[#e0eaf4] dark:prose-p:text-[#8aa4bc] dark:prose-strong:text-[#e0eaf4] dark:prose-li:text-[#8aa4bc]"
+                className="p-8 bg-brand-surface rounded-3xl border border-brand-divider dark:border-[#1e3448]"
               >
-                <ReactMarkdown>{result}</ReactMarkdown>
+                <MarkdownRenderer content={result} />
               </div>
             </motion.div>
           )}

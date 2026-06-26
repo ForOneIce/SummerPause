@@ -1,10 +1,10 @@
 import { useLocalStorage } from './useLocalStorage';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 export function useDarkMode() {
   const [isDark, setIsDark] = useLocalStorage('summer_dark_mode', false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.classList.toggle('dark', isDark);
   }, [isDark]);
 

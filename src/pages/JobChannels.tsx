@@ -1,6 +1,17 @@
 import { useState } from 'react';
-import { Search, Terminal, Building2, Users, Share2, FileText, ShieldCheck, Layers, Sparkles, Trash2, MessageSquareHeart, ChevronRight } from 'lucide-react';
+import { Search, Terminal, Building2, Users, Share2, FileText, ShieldCheck, Layers, Sparkles, Trash2, MessageSquareHeart, ChevronRight, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+
+const SOCIAL_PLATFORMS = [
+  { name: 'X (Twitter)', url: 'https://x.com', tip: '外企/科技公司官推、CEO 招聘动态' },
+  { name: '小红书', url: 'https://www.xiaohongshu.com', tip: '企业号、职场博主、内推笔记' },
+  { name: '微信公众号', url: 'https://mp.weixin.qq.com', tip: '大厂/国企官方招聘推文' },
+  { name: '即刻', url: 'https://okjike.com', tip: '互联网从业者圈子、内推帖' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com', tip: '外企 HR、猎头发布职位' },
+  { name: '微博', url: 'https://weibo.com', tip: '企业官博、校园招聘官微' },
+  { name: 'B 站', url: 'https://www.bilibili.com', tip: '企业官方账号、校招 VLOG' },
+  { name: '脉脉', url: 'https://maimai.cn', tip: '实名职场社交、员工动态' },
+];
 
 export default function JobChannels() {
   const [query, setQuery] = useState('');
@@ -13,8 +24,9 @@ export default function JobChannels() {
     { id: 'official', name: '官网大厂直达', icon: <Building2 size={18} />, desc: '跳过中间平台，直接在企业官网搜索', subtext: '进阶: site:域名 ("招聘" OR "Careers")', chips: [
       { label: '阿里 site:alibaba.com', val: 'site:alibaba.com ("招聘" OR "职位")' }, { label: '腾讯 site:tencent.com', val: 'site:tencent.com ("加入我们" OR "careers")' }, { label: '字节 site:bytedance.com', val: 'site:bytedance.com ("招聘" OR "jobs")' }, { label: '华为 site:huawei.com', val: 'site:huawei.com ("社会招聘")' }
     ]},
-    { id: 'community', name: '社群面经爆料', icon: <Users size={18} />, desc: '在垂直社区挖掘真实面试经验', subtext: '示例: site:v2ex.com "酷工作"', chips: [
-      { label: 'V2EX 酷工作', val: 'site:v2ex.com "酷工作"' }, { label: '知乎', val: 'site:zhihu.com' }, { label: '脉脉', val: 'site:maimai.cn' }, { label: '牛客', val: 'site:nowcoder.com' }, { label: '"面经"', val: '"面经"' }, { label: '"薪资"', val: '"薪资"' }
+    { id: 'community', name: '社群面经爆料', icon: <Users size={18} />, desc: '在垂直社区与社交媒体挖掘真实面试经验、内推与官媒动态', subtext: '示例: site:x.com "hiring" OR site:xiaohongshu.com "内推"', chips: [
+      { label: 'V2EX 酷工作', val: 'site:v2ex.com "酷工作"' }, { label: '知乎', val: 'site:zhihu.com' }, { label: '牛客', val: 'site:nowcoder.com' }, { label: '"面经"', val: '"面经"' }, { label: '"薪资"', val: '"薪资"' },
+      { label: 'X (Twitter)', val: 'site:x.com ("hiring" OR "we are hiring")' }, { label: '小红书', val: 'site:xiaohongshu.com ("内推" OR "招聘")' }, { label: '微信公众号', val: 'site:mp.weixin.qq.com ("招聘" OR "内推")' }, { label: '即刻', val: 'site:okjike.com ("内推" OR "招聘")' }, { label: 'LinkedIn', val: 'site:linkedin.com/jobs' }, { label: '微博', val: 'site:weibo.com ("招聘" OR "校招")' }, { label: 'B 站', val: 'site:bilibili.com ("招聘" OR "校招")' }, { label: '脉脉', val: 'site:maimai.cn ("内推" OR "招聘")' },
     ]},
     { id: 'referral', name: '校招与内推', icon: <Share2 size={18} />, desc: '锁定当季校招汇总及内推码', subtext: '关键词: ("2026" OR "2027") AND ("内推" OR "校招")', chips: [
       { label: '"2026校园招聘"', val: '"2026校园招聘"' }, { label: '"内推码"', val: '"内推码"' }, { label: '"管培生"', val: '"管培生"' }
@@ -150,14 +162,30 @@ export default function JobChannels() {
               将常用搜索指令保存为 Google Alerts，让职位信息主动找到你，而不是每天重复搜索。
             </p>
           </div>
-          <div className="bg-[#ffffff1a] p-5 rounded-2xl space-y-2">
+          <div className="bg-[#ffffff1a] p-5 rounded-2xl space-y-3 md:col-span-1">
             <div className="font-bold flex items-center gap-2">
               <Users size={16} />
               社群渗透
             </div>
             <p className="text-xs opacity-80 leading-relaxed">
-              加入目标公司员工活跃的社群（V2EX、即刻、知乎话题），主动建立弱关系网络，获取内推机会。
+              关注目标公司在各平台的官方账号与员工动态，主动建立弱关系网络，第一时间捕捉内推与急招信息。
             </p>
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              {SOCIAL_PLATFORMS.map((platform) => (
+                <a
+                  key={platform.name}
+                  href={platform.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={platform.tip}
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-medium
+                    bg-[#ffffff26] hover:bg-[#ffffff40] transition-colors"
+                >
+                  {platform.name}
+                  <ExternalLink size={9} className="opacity-60" />
+                </a>
+              ))}
+            </div>
           </div>
           <div className="bg-[#ffffff1a] p-5 rounded-2xl space-y-2">
             <div className="font-bold flex items-center gap-2">

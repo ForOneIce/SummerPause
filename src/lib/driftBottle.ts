@@ -1,5 +1,5 @@
 /** Pick a random index, avoiding consecutive repeats and preferring unseen items. */
-export function pickRandomEncouragement(
+export function pickRandomUnseen(
   currentIndex: number,
   total: number,
   seenIndices: number[]
@@ -25,6 +25,9 @@ export function pickRandomEncouragement(
     seenIndices: newSeen.length >= total - 1 ? [index] : newSeen,
   };
 }
+
+/** @deprecated Alias for pickRandomUnseen */
+export const pickRandomEncouragement = pickRandomUnseen;
 
 export function getDailyEncouragementIndex(total: number): number {
   return Math.floor((Date.now() / (1000 * 60 * 60 * 24)) % total);

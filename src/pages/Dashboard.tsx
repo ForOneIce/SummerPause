@@ -5,8 +5,7 @@ import { format } from 'date-fns';
 import { GAP_ENCOURAGEMENTS } from '../data/encouragements';
 import { PODCAST_EPISODES } from '../data/podcasts';
 import { useLocalStorage } from '../hooks/useLocalStorage';
-import { pickRandomEncouragement, getDailyEncouragementIndex } from '../lib/driftBottle';
-import type { PodcastEpisode } from '../types';
+import { pickRandomEncouragement, pickRandomUnseen, getDailyEncouragementIndex } from '../lib/driftBottle';
 
 export default function Dashboard() {
   const [quoteIndex, setQuoteIndex] = useState(0);
@@ -118,18 +117,22 @@ export default function Dashboard() {
 }
 
 function PodcastCapsule() {
-  const [episode, setEpisode] = useState<PodcastEpisode>(() =>
-    PODCAST_EPISODES[Math.floor(Math.random() * PODCAST_EPISODES.length)]
-  );
+  const total = PODCAST_EPISODES.length;
+  const [episodeIndex, setEpisodeIndex] = useState(() => getDailyEncouragementIndex(total));
+  const [seenIndices, setSeenIndices] = useLocalStorage<number[]>('summer_podcast_capsule_seen', []);
   const [favPodcasts, setFavPodcasts] = useLocalStorage<string[]>('summer_fav_podcasts', []);
   const [showFavs, setShowFavs] = useState(false);
 
+  const episode = PODCAST_EPISODES[episodeIndex];
+
+  useEffect(() => {
+    setSeenIndices(prev => (prev.includes(episodeIndex) ? prev : [...prev, episodeIndex]));
+  }, []);
+
   const refreshEpisode = () => {
-    let next: PodcastEpisode;
-    do {
-      next = PODCAST_EPISODES[Math.floor(Math.random() * PODCAST_EPISODES.length)];
-    } while (next.url === episode.url && PODCAST_EPISODES.length > 1);
-    setEpisode(next);
+    const { index, seenIndices: nextSeen } = pickRandomUnseen(episodeIndex, total, seenIndices);
+    setEpisodeIndex(index);
+    setSeenIndices(nextSeen);
   };
 
   const isFaved = favPodcasts.includes(episode.url);

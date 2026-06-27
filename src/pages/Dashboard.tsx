@@ -1,32 +1,41 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { MessageSquareHeart, Sparkles, Coffee, Heart, Headphones, ChevronDown, RefreshCw, ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
 import { format } from 'date-fns';
 import { GAP_ENCOURAGEMENTS } from '../data/encouragements';
 import { PODCAST_EPISODES } from '../data/podcasts';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import { pickRandomEncouragement, getDailyEncouragementIndex } from '../lib/driftBottle';
 import type { PodcastEpisode } from '../types';
 
 export default function Dashboard() {
-  const [quote, setQuote] = useState<{ text: string; source: string | null }>({ text: '', source: null });
+  const [quoteIndex, setQuoteIndex] = useState(0);
+  const [quote, setQuote] = useState(GAP_ENCOURAGEMENTS[0]);
   const [fadeIn, setFadeIn] = useState(false);
+  const [seenIndices, setSeenIndices] = useLocalStorage<number[]>('summer_drift_bottle_seen', []);
 
   useEffect(() => {
-    const todayIndex = Math.floor(
-      (new Date().getTime() / (1000 * 60 * 60 * 24)) % GAP_ENCOURAGEMENTS.length
-    );
+    const todayIndex = getDailyEncouragementIndex(GAP_ENCOURAGEMENTS.length);
+    setQuoteIndex(todayIndex);
     setQuote(GAP_ENCOURAGEMENTS[todayIndex]);
+    setSeenIndices(prev => (prev.includes(todayIndex) ? prev : [...prev, todayIndex]));
     setTimeout(() => setFadeIn(true), 100);
   }, []);
 
-  const handleRefresh = () => {
+  const handleRefresh = useCallback(() => {
     setFadeIn(false);
     setTimeout(() => {
-      const randomIdx = Math.floor(Math.random() * GAP_ENCOURAGEMENTS.length);
-      setQuote(GAP_ENCOURAGEMENTS[randomIdx]);
+      const { index, seenIndices: nextSeen } = pickRandomEncouragement(
+        quoteIndex,
+        GAP_ENCOURAGEMENTS.length,
+        seenIndices
+      );
+      setQuoteIndex(index);
+      setQuote(GAP_ENCOURAGEMENTS[index]);
+      setSeenIndices(nextSeen);
       setFadeIn(true);
     }, 300);
-  };
+  }, [quoteIndex, seenIndices, setSeenIndices]);
 
   return (
     <div className="space-y-8">
